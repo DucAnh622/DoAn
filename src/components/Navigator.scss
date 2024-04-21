@@ -1,0 +1,96 @@
+@import "../styles/common.scss";
+
+.navigator-menu {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    &.list-unstyled,
+    .list-unstyled {
+        list-style-type: none;
+    }
+    .menu-group {
+        transition: all 0.3s;
+        &:hover {
+            cursor: pointer;
+            background-color: rgba(255,255,255,0.1);
+        }
+        .menu-group-name {
+            line-height: 50px;
+            padding: 0 15px;
+        }
+        .menu-list {
+            display: none;
+            background-color: #003b95;
+            box-shadow: 2px 2px 4px 0 rgba(0,0,0,0.5);
+            -webkit-box-shadow: 2px 2px 4px 0 rgba(0,0,0,0.5);
+            color: #fff;
+            position: absolute;
+            padding: 0;
+            .menu {
+                width: 205px;
+                padding: 0 15px;
+                height: 35px;
+                line-height: 35px;
+                text-transform: none;
+                transition: all 0.3s;
+                .menu-link {
+                    text-decoration: none;
+                    color: #fff;
+                    transition: all 0.3s;
+                }
+                .sub-menu-list {
+                    display: none;
+                    background-color: #fff;
+                    box-shadow: 2px 2px 4px 0 rgba(0,0,0,0.5);
+                    -webkit-box-shadow: 2px 2px 4px 0 rgba(0,0,0,0.5);
+                    position: absolute;
+                    top: 0;
+                    left: 205px;
+                    padding: 0;
+                    transition: all 0.3s;
+                    .sub-menu {
+                        padding: 0 15px;
+                        height: 35px;
+                        line-height: 35px;
+                        white-space: nowrap;
+                        &:hover {
+                            color: #47a0de;
+                        }
+                        .sub-menu-link {
+                            text-decoration: none;
+                            color: #0e131e;
+                        }
+                        a {
+                            display: block;
+                        }
+                        &.active a {
+                            font-weight: 500;
+                            color: #47a0de;
+                        }
+                    }
+                }
+                &.active span {
+                    font-weight: 500;
+                    color: $colormain;
+                }
+                &:hover {
+                    background-color: rgba(255,255,255,0.1);
+                    .sub-menu-list {
+                        display: block;
+                    }
+                }
+                .icon-right {
+                    display: block;
+                    position: absolute;
+                    top: 0;
+                    right: 10px;
+                }
+            }
+        }
+        &:hover {
+            .menu-list {
+                display: block;
+            }
+        }
+    }
+}

@@ -1,0 +1,44 @@
+.info-con {
+    background-color: var(--bg-footer);
+    padding: 8px;
+    .info-form {
+        display: flex;
+        align-items: center;
+        .avatar {
+            flex: 1;
+            text-align: center;
+            img {
+                width: 80px;
+                height: 80px;
+                object-fit: cover;
+                vertical-align: middle;
+                border-radius: 50%;
+                border: 3px solid #47a0de;
+            }
+        }
+        .info {
+            flex: 2;
+            p {
+                color: var(--text-color);
+                margin: 0;
+                span {
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+}
+
+.form-group {
+    color: var(--text-color);
+    .form-control {
+        background-color: var(--bg-color);
+        color: var(--text-color);
+    }
+    .form-select {
+        option {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+    }
+}

@@ -1,0 +1,23 @@
+.Detail-doctor.speciality {
+    min-height: 100vh;
+    padding-bottom: 20px;
+    .container {
+        .speciality-info {
+            color: var(--text-color) !important;
+            h4,p {
+                margin: 0;
+            }
+            button {
+                border: none;
+                transition: all 0.3s;
+                padding: 8px;
+                background-color: transparent;
+                color: var(--text-color);
+                &:hover {
+                    color: var(--hover-color);
+                }
+            }
+        }
+    }
+}
+

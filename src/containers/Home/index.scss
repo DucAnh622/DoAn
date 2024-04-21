@@ -1,0 +1,170 @@
+[data-theme="Li"] {
+    --bg-color: #ffffff;
+    --text-color: #0e131e;
+    --rgba-color: rgba($color: #ffffff, $alpha: 5.0);
+    --rgba-text: rgba($color: #ffffff, $alpha: 8.0);
+    --bg-image: url('../../assets/images/banner.jpg');
+    --hover-color: #47a0de;
+    --hover-bg: #f5f5f5;
+    --bg-banner: #efefef;
+    --bg-footer: #f5f5f5;
+    --bg-bottom: #333;
+    --bg-text-color: #0e131e;
+    --hover-bg-odd: #fefefe;
+    --hover-bg-even: #f5f5f5;
+}
+
+[data-theme="Da"] {
+    --bg-text-color: #cbd5d5;
+    --hover-bg-odd: #171d29;
+    --hover-bg-even: #0e131e;
+    --bg-footer: #171d29;
+    --hover-bg: transparent;
+    --bg-bottom: #0e131e;
+    --bg-banner: #171d29;
+    --hover-color: #61dafb;
+    --bg-color: #0e131e;
+    --hover-bg: #171d29;
+    --text-color: #cbd5d5;
+    --rgba-color: rgba($color: #282c34, $alpha: 5.0); 
+    --rgba-text: rgba($color: #282c34, $alpha: 8.0);
+    --bg-image: url('../../assets/images/banner.jpg');
+}
+
+.index {
+    background-color: var(--bg-color);
+    .container {
+
+        .circle-loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            height: 80px;
+            width: 80px;
+            border-radius: 50%;
+            border: 3px solid var(--bg-color);
+            border-bottom: 3px solid var(--hover-color);
+            border-top: 3px solid var(--hover-color);
+            animation: animate 0.5s linear infinite;
+        }
+    
+        @keyframes animate {
+            0% {
+                transform: translate(-50%,-50%) rotate(0deg);
+            }
+            100% {
+                transform: translate(-50%,-50%) rotate(360deg);
+            }
+        }
+
+        .verify-form {
+            padding: 8px;
+            background-color: var(--bg-color);
+            h4 {
+                color: var(--text-color);
+            }
+            p {
+                color: var(--text-color);
+            }
+            .image-verify {
+                display: block;
+                width: 100%;
+            }
+        }
+    }
+    .banner {
+        background-color: var(--bg-color);
+        display: flex;
+        flex-direction: column;
+        h4 {
+            color: var(--text-color);
+        }
+        .list-slide {
+            padding: 30px 0;
+            .slick-slide > div {
+            margin: 0 10px;
+            }
+            .slick-list {
+            margin: 0 -10px;
+            }
+            .item-slide {
+                &:focus,
+                &:active {
+                  outline: none;
+                }
+                max-height: 600px;
+                width: 100%;
+                display: block;
+                text-decoration: none;
+                overflow: hidden;
+                cursor: pointer;
+                img {
+                    width: 100%;
+                    height: 450px;
+                    border-radius: 16px;
+                    object-fit: cover;
+                }
+            }
+            
+            .slick-arrow.slick-prev,
+            .slick-arrow.slick-next {
+                display: none !important;
+            }
+
+            .slick-disabled {
+                display: none !important;
+            }
+        }
+        .banner-bottom {
+            padding: 15px 0;
+            .banner-content-item {
+                text-align: center;
+                margin: 8px;
+                a {
+                    transition: all 0.3s;
+                    background-color: var(--bg-banner);
+                    text-decoration: none;
+                    display: flex;
+                    padding: 8px 16px;
+                    align-items: center;
+                    justify-content: flex-start;
+                    border-radius: 15px;
+                    i {
+                        color: var(--text-color);
+                        width: 50px;
+                        font-size: 25px;
+                        height: 50px;
+                        padding: 10px;
+                        transition: all 0.3s;
+                    }
+                    p {
+                        color: var(--text-color);
+                        transition: all 0.3s;
+                        margin: 0;
+                    }
+                    &:hover {
+                        background-color: var(--hover-color);
+                        i,p {
+                            color: #fff;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .list-slide {
+        display: none;
+    }
+}
+
+@media screen and (max-width:768px) {
+    
+}
+
+@media screen and (max-width: 992px) {
+    
+}

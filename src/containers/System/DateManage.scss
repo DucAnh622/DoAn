@@ -1,0 +1,48 @@
+.date-manage {
+    .container {
+        .row {
+            .form-group {
+                .form-control.date-input {
+                    height: 52px !important;
+                    &:hover {
+                        cursor: pointer;
+                    }
+
+                    .react-datepicker-wrapper {
+                        display: block;
+                    }
+
+                    .date-form {
+                        width: 100% !important;
+                    }
+                    .form-control {
+                        &:hover {
+                            cursor: pointer !important;
+                        }
+                    }
+                }
+                .d-flex {
+                    .btn {
+                        border: 1px solid #ccc;
+                        min-width: 117px;
+                        transition: all 0.3s;
+                        &:hover {
+                            border-color: #007bff;
+                            color: #007bff;
+                        }
+                    }
+                    .lang {
+                        min-width: 176px;
+                    }
+                    .btn-active {
+                        border-color: #007bff;
+                        color: #007bff;
+                    }
+                }
+                .btn-danger {
+                    margin-left: 8px;
+                }
+            }
+        }
+    }
+}

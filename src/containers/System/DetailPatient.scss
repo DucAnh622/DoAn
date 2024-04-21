@@ -1,0 +1,48 @@
+.modal-dialog {
+    &:has(table) {
+        max-width: 90% !important;
+        margin: 0 auto !important;
+        width: 100%;
+    }
+    .table-theme {
+        overflow: auto;
+        tr {
+            th {
+                color: var(--text-color);
+                min-width: 160px;
+            }
+            td {
+                color: var(--text-color);
+                min-width: 160px;
+                .status {
+                    text-align: center;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    padding: 4px 8px;
+                    display: inline-block;
+                    &.status--wait {
+                        background-color: #F4EFFF;
+                        color: #9A84DA;
+                    }
+                    &.status--success {
+                        background-color: #EAFEF3;
+                        color: #2ECC71;
+                    }
+                    &.status--warning {
+                        background-color: #FFF6E5;
+                        color: #F4BD50;
+                    }
+                    &.status--danger {
+                        background-color: #FFCDD2;
+                        color: #C62828;
+                    }
+                }
+            }
+        }
+    }
+    .pagination {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}

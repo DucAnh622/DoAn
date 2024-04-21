@@ -1,0 +1,73 @@
+.row {
+    .col-12 {
+        .title-text {
+            margin: 8px 0;
+            font-size: 18px;
+            color: var(--text-color);
+        }
+        .form-select {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            outline: none !important;
+            &:hover {
+                cursor: pointer !important;
+            }
+        }
+        .d-flex {
+            .btn-time {
+                border: 1px solid #ccc;
+                transition: all 0.3s;
+                color: var(--text-color);
+                min-width: 20px;
+                &:hover {
+                    border-color: #007bff;
+                    color: #007bff;
+                }
+            }
+            .lang {
+                min-width: 175px;
+            }
+            .btn-active {
+                border-color: #007bff;
+                color: #007bff;
+            }
+        }
+        .egg {
+            margin: 8px 0;
+        }
+        .doc-info {
+            box-shadow: 0 0 5px var(--rgba-color);
+            border-radius: 5px;
+            padding: 8px;
+            p {
+                font-size: 18px;
+                margin: 0;
+                color: var(--text-color);
+                span {
+                    font-weight: 600;
+                }
+                .more {
+                    font-weight: 500 !important;
+                }
+                button {
+                    background-color: transparent;
+                    border: none;
+                    color: var(--text-color);
+                    &:hover {
+                        border-color: #007bff;
+                        color: #007bff;
+                    }
+                }
+            }
+            .info-wrap {
+                border-top: 1px solid var(--text-color);
+                border-bottom: 1px solid var(--text-color);
+                margin: 10px 0;
+                padding: 10px 0;
+                .info-box {
+                    padding: 8px 0;
+                }
+            }
+        }
+    }
+}

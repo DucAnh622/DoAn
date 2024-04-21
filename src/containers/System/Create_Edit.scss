@@ -1,0 +1,59 @@
+form {
+    .form-group {
+        .d-flex {
+            span {
+                cursor: pointer;
+                &:hover label {
+                    cursor: pointer;
+                }
+            }
+            .preview {
+                border: 1px solid #ccc;
+                flex: 1;
+                height: 36px;
+                border-radius: 5px;
+                padding: 6px 12px;
+                background-color: transparent;
+                margin-left: 8px;
+                background-size: contain;
+                background-position: center;
+                background-repeat: no-repeat;
+                .modal-preview {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background-color: rgba(0, 0, 0, 0.5);
+                    display: none;
+                    align-items: center;
+                    justify-self: center;
+                    span {
+                        position: absolute;
+                        top: 0;
+                        background-color: transparent;
+                        border: none;
+                        right: 0;
+                        margin: 8px;
+                        color: #ccc;
+                        &:hover i {
+                            cursor: pointer;
+                        }
+                    }
+                    .modal-form {
+                        margin: 16px auto;
+                        img {
+                            display: block;
+                            width: 100%;
+                            max-width: 900px;
+                            margin: 16px auto;
+                        }
+                    }
+                    &.open {
+                        display: flex !important;
+                    }
+                }
+            }
+        }
+    }
+}

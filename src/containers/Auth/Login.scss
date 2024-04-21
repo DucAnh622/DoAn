@@ -1,0 +1,145 @@
+[data-theme="Li"] {
+    --rgba-color-login: rgba(0,0,0,0.5);
+    --place-color: #ccc;
+    --bg-btn: #ccc;
+}
+
+[data-theme="Da"] {
+    --bg-btn: #333;
+    --place-color: #ccc;
+    --rgba-color-login: rgba(255,255,255,0.5); 
+}
+
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    font-family: sans-serif;
+    background-color: var(--bg-color);
+    .container {
+        padding: 8px 16px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        min-height: 280px;
+        max-width: 350px;
+        width: 100%;
+        border-radius: 15px;
+        background-color: var(--bg-color);
+        box-shadow: 0 0 10px var(--rgba-color-login);
+        .form-group {
+            position: relative;
+            a {
+                text-decoration: none;
+                color: var(--text-color);
+                img {
+                    display: block;
+                    width: 100%;
+                    max-width: 200px;
+                    margin: 16px auto;
+                }
+            }
+            .form-select,
+            .form-control {
+                background-color: transparent;
+                padding: 8px 16px;
+                color: var(--text-color);
+                border-color: var(--text-color);
+                margin-top: 16px;
+                font-size: 18px;
+                transition: all 0.3s;
+                &.invalid {
+                    border-color: #dc3445;
+                }
+            }
+            .form-select {
+                option {
+                    background-color: var(--bg-color);
+                    color: var(--text-color);
+                }
+            }
+            p {
+                font-size: 13px;
+                margin: 5px;
+                transition: all 0.3s;
+                color: var(--text-color);
+                text-align: center !important;
+                span {
+                    transition: all 0.3s;
+                    a {
+                        text-decoration: none;
+                        color: var(--text-color);
+                        transition: all 0.3s;
+                        &:hover {
+                            color: var(--hover-color);
+                        }
+                    }
+                }
+                span:hover {
+                    color: var(--hover-color);
+                    cursor: pointer;
+                }
+            }
+            p:first-child:hover {
+                color: var(--hover-color);
+            }
+            .element-child {
+                position: absolute;
+                top: 14px;
+                right: 10px;
+                transition: all 0.3s;
+                font-size: 18px;
+                color: var(--place-color);
+                &:hover {
+                    color: var(--hover-color);
+                    cursor: pointer;
+                }
+            }
+        }
+        .submit {
+            background-color: #47a0de;
+            color: #fff;
+            font-size: 18px;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            height: 45px;
+            transition: all 0.3s;
+        }
+        .submit:hover {
+            opacity: 0.6;
+            cursor: pointer;
+        }
+    }
+    .container.register-form {
+        min-height: 350px;
+        max-width: 500px;
+    }
+    .setting {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 8px;
+            display: flex;
+            align-items: center;
+            li {
+                padding: 8px 16px;
+                color: var(--text-color);
+                transition: all 0.3s;
+            }
+            li:hover {
+                background-color: var(--bg-color);
+                color: var(--hover-color);
+                border-radius: 5px;
+                cursor: pointer;
+            }
+        }
+    }
+}

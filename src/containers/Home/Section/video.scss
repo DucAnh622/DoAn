@@ -1,0 +1,103 @@
+.video {
+    padding: 16px 0;
+    background-color: var(--bg-footer);
+
+    .video-title {
+        h4 {
+            color: var(--text-color);
+            margin: 0;
+        }
+    }
+    .video-content {
+        margin: 16px 0;
+    }
+    .video-logo {
+        margin: 16px;
+        text-align: center;
+        img {
+            display: block;
+            width: 100%;
+        }
+        p {
+            color: var(--text-color);
+            margin-top: 8px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+    }
+
+    .box-total {
+        position: relative;
+        display: flex;
+        align-items: center;
+        margin: 16px 0;
+        justify-content: center;
+        padding: 8px;
+        background-color: var(--bg-color);
+        overflow: hidden;
+        border-radius: 8px;
+        i {
+            padding: 16px;
+            position: relative;
+            z-index: 1;
+            font-size: 30px;
+            border-radius: 8px;
+            background-color: var(--bg-color);
+            margin-right: 16px;
+            box-shadow: 0 0 5px var(--text-color);
+            &.cli {
+              color: var(--hover-color);
+            }
+            &.spe {
+              color: #dc3545;
+            }
+            &.doc {
+              color: #ffc107;
+            }
+        }
+      
+        .text {
+          position: relative;
+          z-index: 1;
+          p:first-child {
+            font-size: 35px;
+            font-weight: 700;
+            margin-bottom: -10px;
+          }
+          p {
+            color: var(--text-color);
+            font-size: 18px;
+          }         
+        }
+      
+        &::before {
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 120%;
+          height: 50px;
+          background-color: var(--hover-color);
+          box-shadow: 0 0 5px var(--hover-color);
+          animation: animate 4s linear infinite;
+        }
+      
+        &::after {
+          content: '';
+          position: absolute;
+          background-color: var(--bg-color);
+          inset: 4px;
+          border-radius: 8px;
+        }
+      }       
+}
+
+@media screen and (max-width:576px) {
+    iframe {
+        max-width: 720px !important;
+        overflow: hidden !important;
+        object-fit: cover !important;
+        margin: 0 auto !important;
+    }
+}

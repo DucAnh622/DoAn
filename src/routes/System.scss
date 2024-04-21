@@ -1,0 +1,44 @@
+.system {
+    .row {
+        &.DB {
+            --bs-gutter-x: 0 !important;
+        }
+        .sidebar {
+            height: 120%;
+            min-height: 100vh;
+            background-color: #21242b;
+            .sidebar-menu {
+                ul {
+                    list-style: none;
+                    padding: 0;
+                    margin: 0;
+                    li {
+                        a {
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            text-decoration: none;
+                            color: #fff;
+                            padding: 10px;
+                            transition: all 0.3s;
+                            p {
+                                margin: 0;
+                                i {
+                                    margin-right: 2px;
+                                }
+                            }
+                            &:hover {
+                                background-color: #30333a;
+                                color: #47a0de;
+                            }
+                        }
+                    }
+                }
+            }
+        } 
+        .content {
+            padding: 0 16px;
+            position: relative;
+        }
+    }
+}

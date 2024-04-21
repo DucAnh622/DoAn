@@ -1,0 +1,8 @@
+.modal-dialog {
+    &:has(.modal-content) {
+        .modal-content {
+            background-color: var(--bg-color) !important;
+            color: var(--text-color) !important;
+        }
+    }
+}
