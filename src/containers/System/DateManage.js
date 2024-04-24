@@ -49,7 +49,7 @@ const DateManage = (props) => {
            setSchedule(data)
        }
        setListDoctor(getAllDoctor(props.reduxDoctor)) 
-    },[props.reduxSchedule,props.reduxDoctor])
+    },[props.reduxSchedule,props.reduxDoctor,props.lang])
 
     const handleChangeInput = (value,name) => {
         let _dateData = _.cloneDeep(dateData)
@@ -62,9 +62,15 @@ const DateManage = (props) => {
         let result = []
         if(data && data.length > 0) {
             data.map((item,index)=> {
-                let object = {}
-                object.label = `${item.fullName}`
-                object.value = `${item.id}`
+                let object = {},
+                    positionVi = '',
+                    positionEn = ''
+                if(item.Position) {
+                    positionVi = item.Position.valueVI
+                    positionEn = item.Position.valueEN
+                }
+                object.label = props.lang === Languages.VI ? `${index + 1} - ${positionVi} ${item.fullName}` : `${index + 1} - ${positionEn} ${item.fullName}`
+                object.value = item.id
                 result.push(object)
             })
         }

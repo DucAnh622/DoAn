@@ -97,7 +97,7 @@ const Speciality = (props) => {
         if(data && data.length > 0) {
             data.map((item,index)=> {
                 let object = {}
-                object.label = item.name
+                object.label = `${index + 1} - ${item.name}`
                 object.value = item.id
                 result.push(object)
             })

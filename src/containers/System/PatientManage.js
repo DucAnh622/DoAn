@@ -114,7 +114,7 @@ const PatientManage = (props) => {
             </tbody>
             </table>
             </div>
-            {totalPages > 0 &&
+            {totalPages > 1 &&
             <div className='pagination'>
                 <ReactPaginate
                 nextLabel={<i className="fa-solid fa-chevron-right"></i>}

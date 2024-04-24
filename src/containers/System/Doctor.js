@@ -70,7 +70,8 @@ const Doctor = (props) => {
         props.reduxDoctorRequired.PayRes,
         props.reduxDoctorRequired.ProRes,
         props.reduxDoctorRequired.StaRes,
-        props.reduxDoctor
+        props.reduxDoctor,
+        props.lang
     ])
 
     // const getDetailDoctor = async (DoctorId) => {
@@ -256,7 +257,7 @@ const Doctor = (props) => {
         if(data && data.length > 0) {
             data.map((item,index)=> {
                 let object = {}
-                object.label = item.name
+                object.label = `${index + 1} - ${item.name}`
                 object.value = item.id
                 result.push(object)
             })
@@ -274,8 +275,14 @@ const Doctor = (props) => {
         let result = []
         if(data && data.length > 0) {
             data.map((item,index)=> {
-                let object = {}
-                object.label = item.fullName
+                let object = {},
+                    positionVi = '',
+                    positionEn = ''
+                if(item.Position) {
+                    positionVi = item.Position.valueVI
+                    positionEn = item.Position.valueEN
+                }
+                object.label = props.lang === Languages.VI ? `${index + 1} - ${positionVi} ${item.fullName}` : `${index + 1} - ${positionEn} ${item.fullName}`
                 object.value = item.id
                 result.push(object)
             })
