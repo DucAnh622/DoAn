@@ -153,7 +153,7 @@ const Dashboard = (props) => {
               <div className='total-item'>
                   <i class="fa-solid fa-calendar booking"></i>
                   <div className="text">
-                      <p><CountUp start={0} end={totalBook.totalConfirm} duration={2} delay={0} /></p>
+                      <p><CountUp start={0} end={totalBook.totalNew} duration={2} delay={0} /></p>
                       <p><marquee direction="left"><FormattedMessage id="Dashboard.admin.total confirm" /></marquee></p>
                   </div>
               </div>
@@ -162,7 +162,7 @@ const Dashboard = (props) => {
             <div className='total-item'>
                 <i class="fa-solid fa-calendar-plus new"></i>
                 <div className="text">
-                    <p><CountUp start={0} end={totalBook.totalNew} duration={2} delay={0} /></p>
+                    <p><CountUp start={0} end={totalBook.totalConfirm} duration={2} delay={0} /></p>
                     <p><marquee direction="left"><FormattedMessage id="Dashboard.admin.total new appointments" /></marquee></p>
                 </div>
             </div>

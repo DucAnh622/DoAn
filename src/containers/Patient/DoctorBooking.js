@@ -135,24 +135,30 @@ const DoctorBooking = (props) => {
     useEffect(() => {
         if(props.lang) {
             setUserData({...userData, LangType: props.lang})
-            if (type === "You") {
-                setUserData(prevUserData => ({
-                    ...prevUserData,
-                    patientName: props.userRedux ? props.userRedux.fullName : '',
-                    genderId: props.userRedux ? props.userRedux.genderId : ''
-                }));
-            } else {
-                setUserData(prevUserData => ({
-                    ...prevUserData,
-                    patientName: '',
-                    genderId: ''
-                }));
+            if(props.userRedux) {
+                if(type === "You") {
+                    setUserData({...userData, patientName: props.userRedux.fullName,
+                    genderId: props.userRedux.genderId});
+                }
+            }
+            else {
+                setUserData({...userData, patientName: "",
+                genderId: ""});  
             }
         }
     }, [props.lang,type, props.userRedux]);
 
     const handleRadioChange = (event) => {
         setType(event.target.value)
+    }
+
+    const formatDate = (date) => {
+        if(date) {
+            let datePart = date.split("-"),
+            format = `${datePart[2]}/${datePart[1]}/${datePart[0]}`;
+            return format;
+        }
+        return
     }
 
     return (
@@ -171,7 +177,7 @@ const DoctorBooking = (props) => {
                         </div>
                         <div className="info">
                             <p><span>{props.lang === Languages.VI ? `${infoDr.Position.valueVI} ${infoDr.fullName}` : `${infoDr.Position.valueEN} ${infoDr.fullName}`}</span></p>
-                            <p><i className="fa-solid fa-calendar-check"></i> <FormattedMessage id="Doctor-info.date"/>: <span>{props.dataTime && props.dataTime.date}</span></p>
+                            <p><i className="fa-solid fa-calendar-check"></i> <FormattedMessage id="Doctor-info.date"/>: <span>{props.dataTime && formatDate(props.dataTime.date)} </span></p>
                             <p><i className="fa-solid fa-clock"></i> <FormattedMessage id="Doctor-info.time"/>: <span>{ props.dataTime && props.dataTime.Time && props.dataTime.Time.timeType}</span></p>
                             <p><i className="fa-solid fa-money-check-dollar"></i> <FormattedMessage id="Doctor-info.price"/>: <span>{props.lang === Languages.VI ? 
                             <NumericFormat displayType="text" value={infoDr.Doctor_Infor && infoDr.Doctor_Infor.Price && infoDr.Doctor_Infor.Price.valueVI} allowLeadingZeros thousandSeparator="," suffix={' VNĐ'}  />              
