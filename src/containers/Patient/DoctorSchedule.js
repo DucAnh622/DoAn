@@ -159,7 +159,7 @@ const DoctorSchedule = (props) => {
                     })
                 }          
             </select>
-            <p className="title-text"><i className="fa-regular fa-calendar-days"></i> <FormattedMessage id="system.product-manage.book-schedule"/></p>
+            <p className="title-text"><i className="fa-regular fa-calendar-days"></i> <FormattedMessage id="system.product-manage.book-schedule"/> (<FormattedMessage id="system.product-manage.book-login"/>)</p>
             {
                 booking && booking.length > 0 ?
                 <>

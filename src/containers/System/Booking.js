@@ -156,6 +156,8 @@ const Booking = (props) => {
         }
         return check
     }
+
+    
  
     return (
         <>
@@ -204,7 +206,7 @@ const Booking = (props) => {
                             </>
                         }
                     </select>
-                    <button className="btn btn-danger text-white" type="submit" onClick={()=>handleFilter()}><i className="fa-solid fa-sort"></i></button>
+                    <button className="btn btn-danger text-white" type="submit" onClick={()=>handleFilter()}><FormattedMessage id="common.filter"/></button>
                 </div>
                 </>
                 :
@@ -228,7 +230,7 @@ const Booking = (props) => {
                             </>
                         }
                     </select>
-                    <button className="btn btn-danger text-white" type="submit" onClick={()=>handleFilter()}><i className="fa-solid fa-sort"></i></button>
+                    <button className="btn btn-danger text-white" type="submit" onClick={()=>handleFilter()}><FormattedMessage id="common.filter"/></button>
                 </div>
                 </>
             }
@@ -303,7 +305,7 @@ const Booking = (props) => {
             </table>
             </div>
         </div>
-        {totalPages > 0 &&
+        {totalPages > 1 &&
         <div className='pagination'>
             <ReactPaginate
             nextLabel={<i className="fa-solid fa-chevron-right"></i>}

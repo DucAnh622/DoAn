@@ -123,7 +123,7 @@ const History = (props) => {
                                     <th scope="col"><i className="fa-solid fa-calendar-days"></i> <FormattedMessage id="Doctor-info.date"/></th>
                                     <th scope="col"><i className="fa-solid fa-clock"></i> <FormattedMessage id="system.user-manage.dateTime"/></th>
                                     <th scope="col"><i className="fa-solid fa-user-doctor"></i> <FormattedMessage id="system.user-manage.doctor"/></th>
-                                    <th scope="col"><i class="fa-solid fa-bookmark"></i> <FormattedMessage id="system.user-manage.status"/></th>
+                                    <th scope="col"><i className="fa-solid fa-bookmark"></i> <FormattedMessage id="system.user-manage.status"/></th>
                                     <th scope="col"><i className="fa-solid fa-gear"></i> <FormattedMessage id="system.user-manage.option"/></th>
                                     </tr>
                                 </thead>
@@ -164,7 +164,7 @@ const History = (props) => {
                                 }
                                 </tbody>
                                 </table>
-                                {totalPages > 0 &&
+                                {totalPages > 1 &&
                                     <div className='pagination'>
                                         <ReactPaginate
                                         nextLabel={<i className="fa-solid fa-chevron-right"></i>}

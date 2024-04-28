@@ -65,7 +65,7 @@ const RateBooking = (props) => {
             <Modal.Body>
                 <div className='row'>
                     <div className='form-group col-12'>
-                        <input onChange={(event)=>handleChange(event)} value={dataSubmit.Comment} type="text" className={check === true ? "form-control" : 'form-control is-invalid'} id="cancel" placeholder={props.lang === Languages.VI ? "Phản hồi của bạn" : "Your feedback"} />
+                        <textarea rows="3" onChange={(event)=>handleChange(event)} value={dataSubmit.Comment} type="text" className={check === true ? "form-control" : 'form-control is-invalid'} id="cancel" placeholder={props.lang === Languages.VI ? "Phản hồi của bạn" : "Your feedback"} />
                     </div>
                 </div>
             </Modal.Body>

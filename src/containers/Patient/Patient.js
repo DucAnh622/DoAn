@@ -172,7 +172,7 @@ const Patient = (props) => {
                         <div className="form-group col-12 col-sm-6">
                             <label className='text-justify'><FormattedMessage id="system.user-manage.gender"/>:</label>
                             <select className={checkInput.genderId ? "form-select" : "form-select is-invalid"} id="gender" name="gender" value={userData.genderId} onChange={(event)=>handleChangeInput(event.target.value,'genderId')}>
-                            <option>Choose</option>
+                            <option>{props.lang === Languages.VI ? "Chọn" : "Choose"}</option>
                             {listGender && listGender.length > 0 &&
                                 listGender.map((item,index)=>{
                                     return(

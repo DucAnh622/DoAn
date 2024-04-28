@@ -62,7 +62,7 @@ const DeleteBooking = (props) => {
             <Modal.Body>
                 <div className='row'>
                     <div className='form-group col-12'>
-                        <input onChange={(event)=>handleChange(event)} value={dataSubmit.Delete} type="text" className={check === true ? "form-control" : 'form-control is-invalid'} id="cancel" placeholder={props.lang === Languages.VI ? "Lí do hủy" : "Cancel reason"} />
+                        <textarea rows="3" onChange={(event)=>handleChange(event)} value={dataSubmit.Delete} type="text" className={check === true ? "form-control" : 'form-control is-invalid'} id="cancel" placeholder={props.lang === Languages.VI ? "Lí do hủy" : "Cancel reason"} />
                     </div>
                 </div>
             </Modal.Body>

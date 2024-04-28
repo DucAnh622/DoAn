@@ -5,4 +5,14 @@
             color: var(--text-color) !important;
         }
     }
+    &:has(.result) {
+        .result {
+            overflow: hidden;
+            > img {
+                max-width: 200px;
+                display: block;
+                margin: 0 auto;
+            }
+        }
+    }
 }

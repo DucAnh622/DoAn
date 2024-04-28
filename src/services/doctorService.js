@@ -40,6 +40,10 @@ const fetchComment = (doctorId) => {
     return axios.get(`/doctor/get-comment?doctorId=${doctorId}`)
 }
 
+const fetchTimeTable = (doctorId,start,end) => {
+    return axios.get(`/doctor-schedule/get-timetable?id=${doctorId}&start=${start}&end=${end}`)
+}
+
 export {
     fetchGetDoctor,
     fetchGetDoctorById,
@@ -50,5 +54,6 @@ export {
     fetchGetDoctorInfo,
     fetchGetPrice,
     fetchComment,
-    fetchGetAllDoctor
+    fetchGetAllDoctor,
+    fetchTimeTable
 }

@@ -22,7 +22,7 @@
                     }
                 }
                 .d-flex {
-                    .btn {
+                    .btn-schedule {
                         border: 1px solid #ccc;
                         min-width: 117px;
                         transition: all 0.3s;
@@ -38,9 +38,84 @@
                         border-color: #007bff;
                         color: #007bff;
                     }
+                    &:has(.box) {
+                        .box {
+                            display: flex;
+                            align-items: center;
+                            .box-item {
+                                margin-right: 8px;
+                                width: 20px;
+                                height: 20px;
+                                display: block;
+                            }
+                        }
+                    }
                 }
                 .btn-danger {
                     margin-left: 8px;
+                }
+                .calendar-option {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+                .calendar {
+                    border: 1px solid #ccc;
+                    border-radius: 0.25rem;
+                    display: flex;
+                    align-items: flex-start;
+                    padding: 8px;
+                    .calendar-item {
+                        flex: 1;
+                        padding: 8px;
+                        color: #007bff;
+                        font-weight: 600;
+                        text-align: center;
+                        p {
+                            &.calendar-day {
+                                border: 1px solid #007bff;
+                                color: #007bff;
+                                font-size: 18px;
+                                font-weight: 700;
+                                border-radius: 0.25rem;
+                                padding: 16px;
+                            }
+                            text-align: center;
+                            &.trash {
+                                color: #333;
+                            }
+                        }
+                        .time-item{
+                            text-align: center;
+                            padding: 8px;
+                            color: #fff;
+                            margin-top: 8px;
+                            border-radius: 0.25rem;
+                            position: relative;
+                            cursor: pointer !important;
+                            .Booked {
+                                position: absolute;
+                                bottom: 100%;
+                                text-align: justify;
+                                padding: 8px;
+                                right: 0;
+                                background-color: #fff;
+                                display: none;
+                                color: #333;
+                                z-index: 3;
+                                border: 1px solid #ccc;
+                                min-width: 250px !important;
+                                font-size: 16px;
+                                color: #007bff;
+                                label {
+                                    color: #333;
+                                }
+                            }
+                            &:hover .Booked {
+                                display: block;
+                            }
+                        }
+                    }
                 }
             }
         }

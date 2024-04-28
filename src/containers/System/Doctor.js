@@ -74,95 +74,17 @@ const Doctor = (props) => {
         props.lang
     ])
 
-    // const getDetailDoctor = async (DoctorId) => {
-    //     let res = await fetchDetailDoctor(DoctorId)
-    //     let newDoctorData = _.cloneDeep(doctorData)
-    //     if(res && res.EC === 0) {
-    //         if(res.DT) {
-    //             let SelectedSpec = '',SelectedPrice = '', SelectedPay = '', SelectedProv = '',SelectedClin='',
-    //             SelectedStaf, Note ='', ContentMarkdown = '', 
-    //             ContentHTML = '', Description = ''
-    //             if (res.DT && res.DT.Doctor_Infor) {
-    //                 // NameClinic = res.DT.Doctor_Infor.nameClinic
-    //                 // AddressClinic = res.DT.Doctor_Infor.addressClinic
-    //                 Note = res.DT.Doctor_Infor.note
-    //                 Description = res.DT.Doctor_Infor.description
-    //                 ContentHTML = res.DT.Doctor_Infor.contentHTML
-    //                 ContentMarkdown = res.DT.Doctor_Infor.contentMarkdown
-
-    //                 SelectedPrice = listPri.find(item => {
-    //                     return item && item.value === res.DT.Doctor_Infor.priceId
-    //                 })
-    //                 SelectedPay = listPay.find(item => {
-    //                     return item && item.value === res.DT.Doctor_Infor.paymentId
-    //                 })
-    //                 SelectedProv = listPro.find(item => {
-    //                     return item && item.value === res.DT.Doctor_Infor.provinceId
-    //                 })
-    //                 SelectedSpec = listSpe.find(item => {
-    //                     return item && item.value === res.DT.Doctor_Infor.specialityId
-    //                 })
-    //                 SelectedClin = listCli.find(item => {
-    //                     return item && item.value === res.DT.Doctor_Infor.clinicId
-    //                 })
-    //                 SelectedStaf = listSta.find(item => {
-    //                     return item && item.value === res.DT.Doctor_Infor.staffId
-    //                 })
-    //             }
-    //             setSelectedCliOption(SelectedClin)
-    //             setSelectedPriOption(SelectedPrice)
-    //             setSelectedPayOption(SelectedPay)
-    //             setSelectedProOption(SelectedProv)
-    //             setSelectedSpeOption(SelectedSpec)
-    //             setSelectedStaOption(SelectedStaf)
-    //             setDataDoctor({
-    //             ...newDoctorData,
-    //             doctorId: DoctorId,
-    //             contentMarkdown: ContentMarkdown,
-    //             contentHTML: ContentHTML,
-    //             description: Description,
-    //             selectedPrice: SelectedPrice.value,
-    //             selectedSpec: SelectedSpec.value,
-    //             selectedClin: SelectedClin.value,
-    //             selectedPay: SelectedPay.value,
-    //             selectedProv: SelectedProv.value,
-    //             selectedStaf: SelectedStaf?.value, 
-    //             note: Note,
-    //             existData: true
-    //             })
-    //         }
-    //         else {
-    //         setDataDoctor({...dataDefault,doctorId: DoctorId})
-    //         setSelectedCliOption('')
-    //         setSelectedPriOption('')
-    //         setSelectedPayOption('')
-    //         setSelectedProOption('')
-    //         setSelectedSpeOption('')
-    //         setSelectedStaOption('')
-    //         }
-    //     }
-    //     else {
-    //         setDataDoctor(dataDefault)
-    //         setSelectedCliOption('')
-    //         setSelectedPriOption('')
-    //         setSelectedPayOption('')
-    //         setSelectedProOption('')
-    //         setSelectedSpeOption('')
-    //         setSelectedStaOption('')
-    //     }
-    // }
-
     const getDetailDoctor = async (DoctorId) => {
         let res = await fetchDetailDoctor(DoctorId);
         let newDoctorData = _.cloneDeep(doctorData);
         if (res && res.EC === 0) {
-            if (res.DT && res.DT.Doctor_Infor) { // Kiểm tra tồn tại của res.DT.Doctor_Infor trước
+            if (res.DT && res.DT.Doctor_Infor) {
                 let SelectedSpec = '',
                     SelectedPrice = '',
                     SelectedPay = '',
                     SelectedProv = '',
                     SelectedClin = '',
-                    SelectedStaf,
+                    SelectedStaf = '',
                     Note = '',
                     ContentMarkdown = '',
                     ContentHTML = '',
@@ -433,26 +355,15 @@ const Doctor = (props) => {
                             placeholder={<FormattedMessage id="system.product-manage.choose-province"/>}
                             />
                         </div>
-                        {/* <div className="form-group col-12 col-sm-4">
-                            <label className='text-justify'><FormattedMessage id="system.product-manage.name-clinic"/>:</label>
-                            <input type='text' className="form-control" onChange={(event)=>handleChangeInput(event.target.value,'nameClinic')} value= {doctorData.nameClinic} id="Clinic" placeholder={props.lang === Languages.VI ? "Tên phòng khám": "Name clinic"}/>
+                        <div className="form-group col-12">
+                            <label className='text-justify'><FormattedMessage id="system.product-manage.choose-staff"/>:</label>
+                            <Select className="form-select"
+                            value={selectedStaOption}
+                            onChange={(item) => handleSelect(item, 'selectedStaf')}
+                            options={listSta}
+                            placeholder={<FormattedMessage id="system.product-manage.choose-staff"/>}
+                            />
                         </div>
-                        <div className="form-group col-12 col-sm-4">
-                            <label className='text-justify'><FormattedMessage id="system.product-manage.address-clinic"/>:</label>
-                            <input type='text' className="form-control" onChange={(event)=>handleChangeInput(event.target.value,'addressClinic')} value= {doctorData.addressClinic} id="Clinic address" placeholder={props.lang === Languages.VI ? "Địa chỉ phòng khám": "Address clinic"}/>
-                        </div> */}
-                        {
-                            props.userRedux.roleId === roleUsers.ADMIN &&
-                            <div className="form-group col-12">
-                                <label className='text-justify'><FormattedMessage id="system.product-manage.choose-staff"/>:</label>
-                                <Select className="form-select"
-                                value={selectedStaOption}
-                                onChange={(item) => handleSelect(item, 'selectedStaf')}
-                                options={listSta}
-                                placeholder={<FormattedMessage id="system.product-manage.choose-staff"/>}
-                                />
-                            </div>
-                        }
                         <div className="form-group col-12">
                             <label className='text-justify'><FormattedMessage id="system.product-manage.choose-note"/>:</label>
                             <input type='text' className="form-control" onChange={(event)=>handleChangeInput(event.target.value,'note')} value= {doctorData.note} id="Note" placeholder={props.lang === Languages.VI ? "Ghi chú": "Note"}/>

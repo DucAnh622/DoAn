@@ -7,6 +7,7 @@ import { FormattedMessage } from 'react-intl';
 import { Languages, roleUsers } from "../utils/constant";
 import { appChangeLanguage } from "../store/actions/appActions";
 import Doctor from '../containers/System/Doctor';
+import DoctorManage from '../containers/System/DoctorManage';
 import DateManage from '../containers/System/DateManage';
 import Dashboard from '../containers/System/Dashboard';
 import DoctorInfo from '../containers/System/Doctor/DoctorInfo';
@@ -93,7 +94,12 @@ const DoctorRoute = (props) => {
                             <Route
                                 path="/doctor/doctor-manage"
                                 component={
-                                    props.userInfo.roleId !== roleUsers.Staff ? Doctor :
+                                    props.userInfo.roleId !== roleUsers.Staff ? 
+                                    props.userInfo.roleId === roleUsers.ADMIN
+                                    ?
+                                    Doctor:
+                                    DoctorManage 
+                                    :
                                     () => {DefaultURL()}
                                 }
                             />

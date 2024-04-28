@@ -155,14 +155,15 @@ const UserManage = (props) => {
                 </div>
                 <div className='form-group col-12 mt-3 col-sm-3'>
                     <div className='d-flex'>
-                    <select className="form-select d-inline-block" id="limit" name="limit" value={limit} onChange={(event)=>setLimit(event.target.value)}> 
+                    <select className="form-select d-inline-block w-25" id="limit" name="limit" value={limit} onChange={(event)=>setLimit(event.target.value)}> 
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
+                        <option value="4">4</option>
                         <option value="5">5</option>
                         <option value="7">7</option>
                     </select>
-                    <button className="btn btn-primary text-white" type="submit" onClick={()=>handleChangeLimit()}><i className="fa-solid fa-sliders"></i></button>
+                    <button className="btn btn-primary text-white" type="submit" onClick={()=>handleChangeLimit()}><FormattedMessage id="common.record"/></button>
                 </div>
                 </div>
                 <div className='form-group col-12 mt-3 col-sm-3'>
@@ -187,7 +188,7 @@ const UserManage = (props) => {
                             </>
                         }
                     </select>
-                    <button className="btn btn-danger text-white" type="submit" onClick={()=>handleFilter()}><i className="fa-solid fa-sort"></i></button>
+                    <button className="btn btn-danger text-white" type="submit" onClick={()=>handleFilter()}><FormattedMessage id="common.filter"/></button>
                 </div>
                 </div>
                 <div className='form-group col-12 mt-3 col-sm-4'>

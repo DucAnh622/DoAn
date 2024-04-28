@@ -8,13 +8,21 @@ import { connect } from 'react-redux';
 import { Languages } from "../../utils/constant";
 import { appChangeLanguage } from "../../store/actions/appActions";
 import _ from 'lodash';
-import { CommonUtils } from "../../utils";
+import { Lightbox } from "react-modal-image";
+import { Buffer } from 'buffer';
 
 const ConfirmBooking = (props) => {
 
     const [dataSubmit,setData] = useState({})
+    const [show,setShow] = useState(false)
+    const [preview,setPreview] = useState()
 
     useEffect(()=>{
+        if(props.dataBooking && props.dataBooking.result) {
+            let imageURL = ""
+            imageURL = new Buffer(props.dataBooking.result,'base64').toString('binary')
+            setPreview(imageURL)
+        }
         setData({...props.dataBooking,LangType: props.lang, timeData: props.dataBooking.Time && props.dataBooking.Time.timeType})
     },[props.dataBooking])
 
@@ -47,8 +55,18 @@ const ConfirmBooking = (props) => {
                     <div><label className='text-justify'><FormattedMessage id="system.product-manage.Cancel reason"/>:</label> <b>{dataSubmit.cancel}</b></div>
                 }
                 {
-                    dataSubmit.statusId === 3 && dataSubmit.comment &&
-                    <div><label className='text-justify'><FormattedMessage id="Dashboard.Staff.comment"/>:</label> <b>{dataSubmit.comment}</b></div>
+                    dataSubmit.statusId === 3 &&
+                    <div className='result'>
+                        <label className='text-justify'><FormattedMessage id="system.user-manage.result"/>:</label> <img onClick={dataSubmit.result ? ()=>setShow(true) : () => {}} src={preview}/>
+                        {
+                            show === true &&
+                            <Lightbox medium={preview} onClose={() => setShow(false)}/>
+                        }
+                    </div> 
+                }
+                {
+                    dataSubmit.statusId === 3 && dataSubmit.comment && 
+                    <div className='mt-2'><label className='text-justify'><FormattedMessage id="Dashboard.Staff.comment"/>:</label> <b>{dataSubmit.comment}</b></div>
                 }
             </Modal.Body>
             <Modal.Footer>

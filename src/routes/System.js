@@ -10,6 +10,7 @@ import * as actions from "../store/actions";
 import Hospital from "../containers/System/Hosptial";
 import Speciality from "../containers/System/Speciality";
 import Doctor from "../containers/System/Doctor";
+import DoctorManage from '../containers/System/DoctorManage';
 import Booking from "../containers/System/Booking";
 import DateManage from "../containers/System/DateManage";
 import "./System.scss";
@@ -46,6 +47,10 @@ const System = (props) => {
       setMenu(newMenu);
     }
   }, []);
+
+  const DefaultURL = async () => {
+    await history.push('/system/dashboard')
+  }
 
   return (
     <>
@@ -115,10 +120,16 @@ const System = (props) => {
                     />
                     <Route path="/system/booking-manage" component={Booking} />
                     <Route
-                      path="/doctor/doctor-manage"
-                      component={
-                        props.userInfo.roleId !== roleUsers.Staff && Doctor
-                      }
+                        path="/doctor/doctor-manage"
+                        component={
+                            props.userInfo.roleId !== roleUsers.Staff ? 
+                            props.userInfo.roleId === roleUsers.ADMIN
+                            ?
+                            Doctor:
+                            DoctorManage 
+                            :
+                            () => {DefaultURL()}
+                        }
                     />
                     <Route
                       path="/doctor/date-manage"

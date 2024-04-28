@@ -325,7 +325,7 @@ const Dashboard = (props) => {
                       barSize={20}
                     >
                       <XAxis dataKey="date" scale="point" padding={{ left: 8, right: 8 }} />
-                      <YAxis />
+                      <YAxis hide={true} tick={null}/>
                       <Tooltip />
                       <Legend />
                       <CartesianGrid strokeDasharray="3 3" />
@@ -353,7 +353,7 @@ const Dashboard = (props) => {
                       barSize={20}
                     >
                       <XAxis dataKey="Time.timeType" scale="point" padding={{ left: 8, right: 8 }} />
-                      <YAxis />
+                      <YAxis tick={null} hide={true}/>
                       <Tooltip />
                       <Legend />
                       <CartesianGrid strokeDasharray="3 3" />
@@ -443,7 +443,7 @@ const Dashboard = (props) => {
                       barSize={20}
                     >
                       <XAxis dataKey="date" scale="point" padding={{ left: 8, right: 8 }} />
-                      <YAxis />
+                      <YAxis hide={true} tick={null}/>
                       <Tooltip />
                       <Legend />
                       <CartesianGrid strokeDasharray="3 3" />
@@ -471,7 +471,7 @@ const Dashboard = (props) => {
                       barSize={20}
                     >
                       <XAxis dataKey="Time.timeType" scale="point" padding={{ left: 8, right: 8 }} />
-                      <YAxis />
+                      <YAxis hide={true} tick={null}/>
                       <Tooltip />
                       <Legend />
                       <CartesianGrid strokeDasharray="3 3" />
@@ -609,7 +609,7 @@ const Dashboard = (props) => {
                       barSize={20}
                     >
                       <XAxis dataKey="date" scale="point" padding={{ left: 8, right: 8 }} />
-                      <YAxis />
+                      <YAxis hide={true} tick={null}/>
                       <Tooltip />
                       <Legend />
                       <CartesianGrid strokeDasharray="3 3" />
@@ -637,7 +637,7 @@ const Dashboard = (props) => {
                       barSize={20}
                     >
                       <XAxis dataKey="Time.timeType" scale="point" padding={{ left: 8, right: 8 }} />
-                      <YAxis />
+                      <YAxis hide={true} tick={null}/>
                       <Tooltip />
                       <Legend />
                       <CartesianGrid strokeDasharray="3 3" />

@@ -13,6 +13,7 @@ import FormattedDate from '../../components/Formating';
 import { toast } from 'react-toastify';
 import moment from 'moment';
 import Dashboard from '../System/Dashboard';
+import {fetchTimeTable} from "../../services/doctorService"
 
 const DateManage = (props) => {
     const dataDefault = {
@@ -152,6 +153,12 @@ const DateManage = (props) => {
             }
           }
           setDateData(dataDefault);
+          if(props.userRedux && props.userRedux.roleId === roleUsers.ADMIN) {
+            setTimeTable([])
+          }
+          else {
+            getTimeTable(props.userRedux.id,"","")
+          }
           schedule.forEach(item => {
             item.isSelected = false;
           });
@@ -163,7 +170,57 @@ const DateManage = (props) => {
         schedule.forEach(item => {
         item.isSelected = false;
         });
+        setTimeTable([])
     }
+
+    const [timeTable,setTimeTable] = useState([])
+
+    const getTimeTable = async (id,start,end) => {
+        let res = await fetchTimeTable(+id,start,end)
+        if(res && res.EC === 0) {
+            setTimeTable(res.DT)
+        }
+    }
+
+    useEffect(()=>{
+        if(props.userRedux && props.userRedux.roleId === roleUsers.ADMIN) {
+            getTimeTable(dateData.doctorId,"","")
+        }
+        else
+        {
+            getTimeTable(props.userRedux.id,"","")
+        }
+    },[dateData,props.userRedux])
+
+    const formatDate = (date) => {
+        let datePart = date.split("-"),
+        format = `${datePart[2]}/${datePart[1]}/${datePart[0]}`;
+        return format;
+    }
+
+    const handlePrev = () => {
+        if (timeTable && timeTable.length > 0) {
+            const startDate = timeTable[0].date;
+            if(props.userRedux && props.userRedux.roleId === roleUsers.ADMIN) {
+                getTimeTable(dateData.doctorId, startDate, "");
+              }
+                else {
+                getTimeTable(props.userRedux.id, startDate, "");
+            }
+        }
+    };
+    
+    const handleNext = () => {
+        if (timeTable && timeTable.length > 0) {
+            const endDate = timeTable[timeTable.length - 1].date;
+            if(props.userRedux && props.userRedux.roleId === roleUsers.ADMIN) {
+                getTimeTable(dateData.doctorId, "", endDate);
+              }
+                else {
+                getTimeTable(props.userRedux.id, "", endDate);
+            }
+        }
+    };
 
     return (
         <>
@@ -173,13 +230,13 @@ const DateManage = (props) => {
             <>
             <div className='date-manage'>
                 <div className='container'>
-                    <h4><FormattedMessage id="menu.system.system-administrator.date-manage"/></h4>
+                    <h4><FormattedMessage id="menu.system.system-administrator.date-create"/></h4>
                     <div className='row'>
                         {
                             dateData.roleId === roleUsers.ADMIN &&
                             <div className='form-group col-12 col-sm-6'>
                                 <label className='text-justify'><FormattedMessage id="system.product-manage.choose-doc"/>:</label>
-                                <Select className={checkInput.doctorId ? "form-control" : "form-control is-invalid"} value={dateData.doctorId ? dateData.doctorId.value : null} onChange={(selectedOption) => handleChangeInput(selectedOption.value, 'doctorId')}  options={listDoctors}/>
+                                <Select className={checkInput.doctorId ? "form-control" : "form-control is-invalid"} value={dateData.doctorId ? dateData.doctorId.value : ''} onChange={(selectedOption) => handleChangeInput(selectedOption.value, 'doctorId')}  options={listDoctors}/>
                             </div>
                         }
                         <div className='form-group col-12 col-sm-6'>
@@ -187,7 +244,7 @@ const DateManage = (props) => {
                             <span className='form-control date-input'>
                             <DatePicker
                                 className={checkInput.date ? "form-control" : "form-control is-invalid"}
-                                selected={dateData.date ? moment(dateData.date).toDate() : null}
+                                selected={dateData.date ? moment(dateData.date).toDate() : ''}
                                 value={dateData.date}
                                 onChange={(date) => handleChangeInput(date, 'date')}
                                 minDate={minDate}
@@ -203,8 +260,8 @@ const DateManage = (props) => {
                                         return(
                                             <button onClick={()=>handleChooseTime(item)} className={
                                                 item.isSelected
-                                                ? "btn btn-active d-block"
-                                                : "btn d-block"
+                                                ? "btn btn-schedule btn-active d-block"
+                                                : "btn btn-schedule d-block"
                                             } key={index}>
                                                 {item.timeType}
                                             </button>
@@ -221,6 +278,55 @@ const DateManage = (props) => {
                                 <FormattedMessage id="common.cancel"/>
                             </button>
                         </div>
+                        {
+                            timeTable && timeTable.length > 0 ?
+                            <div className='form-group col-12 mt-2 mb-2'>
+                                <div className='d-flex justify-content-between align-items-center'>
+                                    <h4><FormattedMessage id="menu.system.system-administrator.date-manage"/></h4>                                   <div className='d-flex justify-content-end align-items-center'>
+                                        <div className='box' style={{marginRight:"8px"}}><span className='bg-primary box-item bg-primary'></span><FormattedMessage id="common.book-new"/></div>
+                                        <div className='box'><span className='box-item bg-success'></span><FormattedMessage id="common.booked"/></div>
+                                   </div>
+                                   <div className='calendar-option'>
+                                        <button onClick={()=>handlePrev()} className='btn btn-warning text-white' style={{marginRight:"8px"}}><i className="fa-solid fa-chevron-left"></i> <FormattedMessage id="common.prev"/></button>
+                                        <button onClick={()=>handleNext()} className='btn btn-primary'><FormattedMessage id="common.next"/> <i className="fa-solid fa-chevron-right"></i></button>
+                                   </div>
+                                </div>
+                                <div className='calendar'>
+                                    {
+                                        timeTable.map((day,dayIndex)=>{
+                                            let today = moment(new Date()).format('DD/MM/YYYY')
+                                            return(
+                                                <div className='calendar-item' key={dayIndex}>
+                                                    <p className='calendar-day'>{formatDate(day.date) === today ? <FormattedMessage id="common.today"/> : formatDate(day.date)}</p>
+                                                    {
+                                                        day.timeTable && day.timeTable.length > 0 ?
+                                                        day.timeTable.map((time,timeIndex)=>{
+                                                            return(
+                                                                <div className={time.check === false ? 'time-item bg-primary' : 'time-item bg-success'} key={timeIndex}>
+                                                                {time.Time && time.Time.timeType}
+                                                                {
+                                                                    time.check === true &&
+                                                                    <div className='Booked'>
+                                                                        <div><label className='text-justify'><FormattedMessage id="system.user-manage.patientName"/>:</label> {time.bookingInfo && time.bookingInfo.patientName}</div>
+                                                                        <div><label className='text-justify'><FormattedMessage id="system.user-manage.gender"/>:</label> {props.lang === Languages.VI && time.bookingInfo && time.bookingInfo.Gender ?  time.bookingInfo.Gender.valueVI  : time.bookingInfo.Gender.valueEN}</div>
+                                                                        <div><label className='text-justify'><FormattedMessage id="system.user-manage.reason"/>:</label> {time.bookingInfo && time.bookingInfo.reason}</div>
+                                                                    </div>
+                                                                }
+                                                                </div>
+                                                            )
+                                                        })
+                                                        :
+                                                        <p className='trash'><FormattedMessage id="common.trash"/></p>
+                                                    }
+                                                </div>
+                                            )
+                                        })
+                                    }
+                                </div>
+                            </div>
+                            :
+                            <></>
+                        }
                     </div>
                 </div>
             </div>
