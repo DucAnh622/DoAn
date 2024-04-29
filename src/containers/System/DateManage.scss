@@ -92,11 +92,11 @@
                             margin-top: 8px;
                             border-radius: 0.25rem;
                             position: relative;
-                            cursor: pointer !important;
+                            cursor: default !important;
                             .Booked {
                                 position: absolute;
-                                bottom: 100%;
-                                text-align: justify;
+                                top: -120px;
+                                text-align: left;
                                 padding: 8px;
                                 right: 0;
                                 background-color: #fff;
@@ -104,11 +104,12 @@
                                 color: #333;
                                 z-index: 3;
                                 border: 1px solid #ccc;
-                                min-width: 250px !important;
+                                min-width: 295px !important;
                                 font-size: 16px;
-                                color: #007bff;
+                                font-weight: 600;
                                 label {
                                     color: #333;
+                                    font-weight: 400;
                                 }
                             }
                             &:hover .Booked {

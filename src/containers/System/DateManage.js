@@ -222,6 +222,28 @@ const DateManage = (props) => {
         }
     };
 
+    const statusColor = (status) => {
+        let check = ''
+        switch (status) {
+            case 1: 
+                check = 'bg-primary'
+                break;
+            case 2: 
+                check = 'bg-warning'
+                break;
+            case 3:
+                check = 'bg-success'
+                break;
+            case 3:
+                check = 'bg-danger'
+                break;    
+            default:
+                check = 'bg-primary'
+                break                
+        }
+        return check
+    }
+
     return (
         <>
         {
@@ -283,8 +305,10 @@ const DateManage = (props) => {
                             <div className='form-group col-12 mt-2 mb-2'>
                                 <div className='d-flex justify-content-between align-items-center'>
                                     <h4><FormattedMessage id="menu.system.system-administrator.date-manage"/></h4>                                   <div className='d-flex justify-content-end align-items-center'>
-                                        <div className='box' style={{marginRight:"8px"}}><span className='bg-primary box-item bg-primary'></span><FormattedMessage id="common.book-new"/></div>
-                                        <div className='box'><span className='box-item bg-success'></span><FormattedMessage id="common.booked"/></div>
+                                        <div className='box'><span className='bg-primary box-item bg-primary'></span><FormattedMessage id="common.book-new"/></div>
+                                        <div className='box'><span className='box-item bg-warning' style={{marginRight:"8px",marginLeft:"8px"}}></span>{props.lang === Languages.VI ? " Chưa khám " : " New "}</div>
+                                        <div className='box'><span className='box-item bg-success' style={{marginRight:"8px",marginLeft:"8px"}}></span>{props.lang === Languages.VI ? " Đã khám " : " Done "}</div>
+                                        <div className='box'><span className='box-item bg-danger' style={{marginLeft:"8px"}}></span>{props.lang === Languages.VI ? " Đã hủy " : " Canceled "}</div>
                                    </div>
                                    <div className='calendar-option'>
                                         <button onClick={()=>handlePrev()} className='btn btn-warning text-white' style={{marginRight:"8px"}}><i className="fa-solid fa-chevron-left"></i> <FormattedMessage id="common.prev"/></button>
@@ -301,19 +325,46 @@ const DateManage = (props) => {
                                                     {
                                                         day.timeTable && day.timeTable.length > 0 ?
                                                         day.timeTable.map((time,timeIndex)=>{
-                                                            return(
-                                                                <div className={time.check === false ? 'time-item bg-primary' : 'time-item bg-success'} key={timeIndex}>
-                                                                {time.Time && time.Time.timeType}
-                                                                {
-                                                                    time.check === true &&
-                                                                    <div className='Booked'>
-                                                                        <div><label className='text-justify'><FormattedMessage id="system.user-manage.patientName"/>:</label> {time.bookingInfo && time.bookingInfo.patientName}</div>
-                                                                        <div><label className='text-justify'><FormattedMessage id="system.user-manage.gender"/>:</label> {props.lang === Languages.VI && time.bookingInfo && time.bookingInfo.Gender ?  time.bookingInfo.Gender.valueVI  : time.bookingInfo.Gender.valueEN}</div>
-                                                                        <div><label className='text-justify'><FormattedMessage id="system.user-manage.reason"/>:</label> {time.bookingInfo && time.bookingInfo.reason}</div>
-                                                                    </div>
+                                                            if(time.check === true) {
+                                                                let color  = ''
+                                                                if(time.bookingInfo) {
+                                                                    color = statusColor(time.bookingInfo.statusId)
                                                                 }
-                                                                </div>
-                                                            )
+                                                                return(
+                                                                    <div className={`${color} time-item text-white`} key={timeIndex}>
+                                                                    {time.Time && time.Time.timeType}
+                                                                    {
+                                                                        time.bookingInfo &&
+                                                                        <div className='Booked'>
+                                                                            <div><label className='text-justify'><FormattedMessage id="system.user-manage.patientName"/>:</label> {time.bookingInfo.patientName}</div>
+                                                                            <div><label className='text-justify'><FormattedMessage id="system.user-manage.gender"/>:</label> {props.lang === Languages.VI && time.bookingInfo.Gender ?  time.bookingInfo.Gender.valueVI  : time.bookingInfo.Gender.valueEN}</div>
+                                                                            <div><label className='text-justify'><FormattedMessage id="system.user-manage.reason"/>:</label> {time.bookingInfo.reason}</div>
+                                                                            <div><label className='text-justify'><FormattedMessage id="system.user-manage.status"/>:</label> 
+                                                                            {
+                                                                                time.bookingInfo.statusId === 1 || time.bookingInfo.statusId === 2 ?
+                                                                                <>
+                                                                                 {props.lang === Languages.VI ? " Chưa khám " : " New "}
+                                                                                </>
+                                                                                :
+                                                                                <>
+                                                                                {props.lang === Languages.VI && time.bookingInfo.Status ? 
+                                                                                ` ${time.bookingInfo.Status.valueVI} ` : 
+                                                                                ` ${time.bookingInfo.Status.valueEN} `}
+                                                                                </>
+                                                                            }
+                                                                            </div>
+                                                                        </div>
+                                                                    }
+                                                                    </div>
+                                                                )
+                                                            }
+                                                            else {
+                                                                return(
+                                                                    <div className='time-item bg-primary' key={timeIndex}>
+                                                                    {time.Time && time.Time.timeType}
+                                                                    </div>
+                                                                )
+                                                            }
                                                         })
                                                         :
                                                         <p className='trash'><FormattedMessage id="common.trash"/></p>

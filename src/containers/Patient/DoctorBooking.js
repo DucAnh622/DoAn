@@ -17,7 +17,7 @@ import { fetchBook } from '../../services/patientService';
 import './Modal.scss';
 
 const DoctorBooking = (props) => {
-    const [type,setType] = useState("You")
+    const [type,setType] = useState("YOU")
     const dataDefault = {
         fullName: props.userRedux ? props.userRedux.fullName : '',
         userId: props.userRedux ? props.userRedux.id : '',
@@ -136,14 +136,14 @@ const DoctorBooking = (props) => {
         if(props.lang) {
             setUserData({...userData, LangType: props.lang})
             if(props.userRedux) {
-                if(type === "You") {
+                if(type === "YOU") {
                     setUserData({...userData, patientName: props.userRedux.fullName,
                     genderId: props.userRedux.genderId});
                 }
-            }
-            else {
-                setUserData({...userData, patientName: "",
-                genderId: ""});  
+                if(type === "FAMILY") {
+                    setUserData({...userData, patientName: "",
+                    genderId: ""}); 
+                }
             }
         }
     }, [props.lang,type, props.userRedux]);
@@ -194,13 +194,13 @@ const DoctorBooking = (props) => {
                         <div className='mt-2 d-flex justify-content-between align-items-center'>
                             <label className='text-justify'><FormattedMessage id="system.user-manage.for"/>:</label>
                             <div className="form-check form-check-inline">
-                                <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="You" checked={type === 'You'}  onChange={(event)=>handleRadioChange(event)}/>
+                                <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="YOU" checked={type === 'YOU'}  onChange={(event)=>handleRadioChange(event)}/>
                                 <label className="form-check-label" htmlFor="exampleRadios1">
                                     <FormattedMessage id="Booking.myself"/>
                                 </label>
                             </div>
                             <div className="form-check form-check-inline">
-                                <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="Family" checked={type === 'Family'}  onChange={(event)=>handleRadioChange(event)}/>
+                                <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="FAMILY" checked={type === 'FAMILY'}  onChange={(event)=>handleRadioChange(event)}/>
                                 <label className="form-check-label" htmlFor="exampleRadios2">
                                     <FormattedMessage id="Booking.family"/>
                                 </label>
@@ -208,7 +208,7 @@ const DoctorBooking = (props) => {
                         </div>
                     </div>
                     {
-                        type === "Family" &&
+                        type === "FAMILY" &&
                         <>
                         <div className="form-group col-12 col-sm-6">
                             <label className='text-justify'><FormattedMessage id="system.user-manage.patientName"/>:</label>
