@@ -306,8 +306,8 @@ const DateManage = (props) => {
                                 <div className='d-flex justify-content-between align-items-center'>
                                     <h4><FormattedMessage id="menu.system.system-administrator.date-manage"/></h4>                                   <div className='d-flex justify-content-end align-items-center'>
                                         <div className='box'><span className='bg-primary box-item bg-primary'></span><FormattedMessage id="common.book-new"/></div>
-                                        <div className='box'><span className='box-item bg-warning' style={{marginRight:"8px",marginLeft:"8px"}}></span>{props.lang === Languages.VI ? " Chưa khám " : " New "}</div>
-                                        <div className='box'><span className='box-item bg-success' style={{marginRight:"8px",marginLeft:"8px"}}></span>{props.lang === Languages.VI ? " Đã khám " : " Done "}</div>
+                                        <div className='box'><span className='box-item bg-warning' style={{marginRight:"8px",marginLeft:"8px"}}></span>{props.lang === Languages.VI ? " Chưa khám " : " Accepted "}</div>
+                                        <div className='box'><span className='box-item bg-success' style={{marginRight:"8px",marginLeft:"8px"}}></span>{props.lang === Languages.VI ? " Đã khám " : " Completed "}</div>
                                         <div className='box'><span className='box-item bg-danger' style={{marginLeft:"8px"}}></span>{props.lang === Languages.VI ? " Đã hủy " : " Canceled "}</div>
                                    </div>
                                    <div className='calendar-option'>
