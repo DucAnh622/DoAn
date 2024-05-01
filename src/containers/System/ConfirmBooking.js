@@ -43,30 +43,35 @@ const ConfirmBooking = (props) => {
             <Modal.Title><FormattedMessage id="Dashboard.Staff.info booking"/></Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <div><label className='text-justify'><FormattedMessage id="system.user-manage.Booking"/>:</label> <b>{dataSubmit && dataSubmit.patientData && dataSubmit.patientData.fullname}</b></div>
-                <div><label className='text-justify'><FormattedMessage id="system.user-manage.email"/>:</label> <b>{dataSubmit && dataSubmit.patientData && dataSubmit.patientData.email}</b></div>
-                <div><label className='text-justify'><FormattedMessage id="system.user-manage.patientName"/>:</label> <b>{dataSubmit.patientName}</b></div>
-                <div><label className='text-justify'><FormattedMessage id="system.user-manage.gender"/>:</label> <b>{props.lang === Languages.VI ? dataSubmit && dataSubmit.Gender && dataSubmit.Gender.valueVI  :dataSubmit && dataSubmit.Gender && dataSubmit.Gender.valueEN}</b></div>
-                <div><label className='text-justify'><FormattedMessage id="system.user-manage.mobile"/>:</label> <b>{dataSubmit && dataSubmit.patientData && dataSubmit.patientData.phone}</b></div>
-                <div><label className='text-justify'><FormattedMessage id="system.user-manage.address"/>:</label> <b>{dataSubmit && dataSubmit.patientData && dataSubmit.patientData.address}</b></div>
-                <div><label className='text-justify'><FormattedMessage id="system.user-manage.reason"/>:</label> <b>{dataSubmit.reason}</b></div>
                 {
-                    dataSubmit.statusId === 4 &&
-                    <div><label className='text-justify'><FormattedMessage id="system.product-manage.Cancel reason"/>:</label> <b>{dataSubmit.cancel}</b></div>
-                }
-                {
-                    dataSubmit.statusId === 3 &&
-                    <div className='result'>
-                        <label className='text-justify'><FormattedMessage id="system.user-manage.result"/>:</label> <img onClick={dataSubmit.result ? ()=>setShow(true) : () => {}} src={preview}/>
-                        {
-                            show === true &&
-                            <Lightbox medium={preview} onClose={() => setShow(false)}/>
-                        }
-                    </div> 
-                }
-                {
-                    dataSubmit.statusId === 3 && dataSubmit.comment && 
-                    <div className='mt-2'><label className='text-justify'><FormattedMessage id="Dashboard.Staff.comment"/>:</label> <b>{dataSubmit.comment}</b></div>
+                    dataSubmit &&
+                    <>
+                    <div><label className='text-justify'><FormattedMessage id="system.user-manage.Booking"/>:</label> <b>{dataSubmit.patientData && dataSubmit.patientData.fullname}</b></div>
+                    <div><label className='text-justify'><FormattedMessage id="system.user-manage.email"/>:</label> <b>{dataSubmit.patientData && dataSubmit.patientData.email}</b></div>
+                    <div><label className='text-justify'><FormattedMessage id="system.user-manage.patientName"/>:</label> <b>{dataSubmit.patientName}</b></div>
+                    <div><label className='text-justify'><FormattedMessage id="system.user-manage.gender"/>:</label> <b>{props.lang === Languages.VI ? dataSubmit.Gender && dataSubmit.Gender.valueVI  : dataSubmit && dataSubmit.Gender && dataSubmit.Gender.valueEN}</b></div>
+                    <div><label className='text-justify'><FormattedMessage id="system.user-manage.mobile"/>:</label> <b>{dataSubmit.patientData && dataSubmit.patientData.phone}</b></div>
+                    <div><label className='text-justify'><FormattedMessage id="system.user-manage.address"/>:</label> <b>{dataSubmit && dataSubmit.patientData && dataSubmit.patientData.address}</b></div>
+                    <div><label className='text-justify'><FormattedMessage id="system.user-manage.reason"/>:</label> <b>{dataSubmit.reason}</b></div>
+                    {
+                        dataSubmit.statusId === 4 &&
+                        <div><label className='text-justify'><FormattedMessage id="system.product-manage.Cancel reason"/>:</label> <b>{dataSubmit.cancel}</b></div>
+                    }
+                    {
+                        dataSubmit.statusId === 3 &&
+                        <div className='result'>
+                            <label className='text-justify'><FormattedMessage id="system.user-manage.result"/>:</label> <img onClick={dataSubmit.result ? ()=>setShow(true) : () => {}} src={preview}/>
+                            {
+                                show === true &&
+                                <Lightbox medium={preview} onClose={() => setShow(false)}/>
+                            }
+                        </div> 
+                    }
+                    {
+                        dataSubmit.statusId === 3 && dataSubmit.comment && 
+                        <div className='mt-2'><label className='text-justify'><FormattedMessage id="Dashboard.Staff.comment"/>:</label> <b>{dataSubmit.comment}</b></div>
+                    }
+                    </>
                 }
             </Modal.Body>
             <Modal.Footer>

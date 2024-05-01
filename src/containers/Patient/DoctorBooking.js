@@ -24,7 +24,7 @@ const DoctorBooking = (props) => {
         genderId: '',
         patientName: '',
         doctorId: '',
-        LangType: '',
+        LangType: props.lang,
         doctorName: '',
         date: '',
         timeData: '',
@@ -118,6 +118,7 @@ const DoctorBooking = (props) => {
 
     const handleCreate = async () => {
         let check = validate()
+        console.log(userData)
         if(check) {
             let res = await fetchBook(userData)
             if(res && res.EC === 0) {
@@ -133,20 +134,29 @@ const DoctorBooking = (props) => {
     }
 
     useEffect(() => {
-        if(props.lang) {
-            setUserData({...userData, LangType: props.lang})
-            if(props.userRedux) {
-                if(type === "YOU") {
-                    setUserData({...userData, patientName: props.userRedux.fullName,
-                    genderId: props.userRedux.genderId});
+        if (props.lang) {
+            setUserData(prevUserData => ({
+                ...prevUserData,
+                LangType: props.lang
+            }));
+            if (props.userRedux) {
+                if (type === "YOU") {
+                    setUserData(prevUserData => ({
+                        ...prevUserData,
+                        patientName: props.userRedux.fullName,
+                        genderId: props.userRedux.genderId
+                    }));
                 }
-                if(type === "FAMILY") {
-                    setUserData({...userData, patientName: "",
-                    genderId: ""}); 
+                if (type === "FAMILY") {
+                    setUserData(prevUserData => ({
+                        ...prevUserData,
+                        patientName: "",
+                        genderId: ""
+                    }));
                 }
             }
         }
-    }, [props.lang,type, props.userRedux]);
+    }, [props.lang, type, props.userRedux]);
 
     const handleRadioChange = (event) => {
         setType(event.target.value)

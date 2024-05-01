@@ -81,28 +81,30 @@ const PatientManage = (props) => {
                         let genderVi = `${item.Gender.valueVI}`,
                             genderEn = `${item.Gender.valueEN}`,
                             date = formatDate(item.lastDate)
-                            return(
-                            <tr key={`row-${index}`}>
-                                <th scope="row">{(page - 1) * limit + index + 1}</th>
-                                <td>{item.fullName}</td>
-                                <td>
-                                    {
-                                        props.lang === Languages.VI ?
-                                        genderVi
-                                        :
-                                        genderEn
-                                    }
-                                </td>
-                                <td>{item.email}</td>
-                                <td>{item.bookingCount}</td>
-                                <td>{date}</td>
-                                <td>
-                                    <div className='d-flex alin-item-center justify-content-between'>
-                                        <button onClick={()=>handleView(item)} className='btn btn-warning w-100'><i className="fa-solid fa-eye"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-                        )
+                            if(item.bookingCount > 0) {
+                                return(
+                                    <tr key={`row-${index}`}>
+                                        <th scope="row">{(page - 1) * limit + index + 1}</th>
+                                        <td>{item.fullName}</td>
+                                        <td>
+                                            {
+                                                props.lang === Languages.VI ?
+                                                genderVi
+                                                :
+                                                genderEn
+                                            }
+                                        </td>
+                                        <td>{item.email}</td>
+                                        <td>{item.bookingCount}</td>
+                                        <td>{date}</td>
+                                        <td>
+                                            <div className='d-flex alin-item-center justify-content-between'>
+                                                <button onClick={()=>handleView(item)} className='btn btn-warning w-100'><i className="fa-solid fa-eye"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                )
+                            }
                     })}
                     </>
                     :

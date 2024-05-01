@@ -77,6 +77,7 @@ const Booking = (props) => {
     const handleCancel = (item) => {
         setdataBooking(item)
         setShowCancel(true)
+        getBookingList()
     }
 
     const handleClose = () => {
